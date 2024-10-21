@@ -8,7 +8,7 @@ def imprimir_un_verso():
     print("Este es un verso\nEste es otro")
 
 def raizDe2()->float:
-    return 2**(1/2)
+    return round(2**(1/2), 4)
 
 def factorial_de_dos()->int:
     return 2
