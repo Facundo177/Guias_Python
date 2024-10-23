@@ -189,7 +189,7 @@ def pos_minimo(s:list[int]) -> int:
 def hay_palabra_larga(s:list[str]) -> bool:
     """ 
     Dada una lista de palabras (seq⟨seq⟨Char⟩⟩), devolver verdadero si alguna palabra tiene longitud mayor a 7. 
-    Ejemplo: ["termo", "gato", "tener", "jirafas"], devuelve falso.
+    \nEjemplo: ["termo", "gato", "tener", "jirafas"], devuelve falso.
     """
     
     for palabra in s:
@@ -226,8 +226,8 @@ def tiene_tres_vocales_distintas(palabra:str) -> bool:
     """ 
     Recorrer una palabra en formato string y devolver True si esta tiene al menos 3 vocales distintas y False en caso contrario.
     """
-    vocales:list[chr] = ['a', 'e', 'i', 'o', 'u']
-    vocales_en_palabra:list[chr] = []
+    vocales:list[str] = ['a', 'e', 'i', 'o', 'u']
+    vocales_en_palabra:list[str] = []
     
     for letra in palabra:
         if letra in vocales and letra not in vocales_en_palabra:
@@ -239,8 +239,8 @@ def tiene_tres_vocales_distintas(palabra:str) -> bool:
 
 def posicion_de_la_secuencia_mas_larga(numeros:list[int]) -> int:
     """ 
-    Recorrer una seq⟨Z⟩ y devolver la posicion donde inicia la secuencia de numeros ordenada mas larga. 
-    Si hay dos subsecuencias de igual longitud devolver la posicion donde empieza la primera. 
+    Recorrer una seq⟨Z⟩ y devolver la posicion donde inicia la secuencia de numeros ordenada mas larga.\n
+    Si hay dos subsecuencias de igual longitud devolver la posicion donde empieza la primera.\n
     La secuencia de entrada es no vacia.
     """
     contador_secuencia:int = 0
@@ -263,6 +263,89 @@ def posicion_de_la_secuencia_mas_larga(numeros:list[int]) -> int:
         posicion = i-contador_secuencia
     
     return posicion
+
+
+
+def cantidad_digitos_impares(numeros:list[int]) -> int:
+    """ 
+    problema cantidad_digitos_impares (in s:seq⟨Z⟩) : Z {
+        requiere: {Todos los elementos de numeros son mayores o iguales a 0}
+        asegura: {res es la cantidad total de digitos impares que aparecen en cada uno de los elementos de n´umeros}
+    }
+    Por ejemplo, si la lista de numeros es [57, 2383, 812, 246], entonces el resultado esperado seria 5 
+    (los digitos impares son 5, 7, 3, 3 y 1).
+    """
+    contador_impares:int = 0
+    
+    for num in numeros:
+        
+        while num > 9:
+            if (num % 10) % 2 == 1:
+                contador_impares += 1
+            num = num // 10
+            
+        if num % 2 == 1:
+            contador_impares += 1
+    
+    return contador_impares
+
+
+
+# Ejercicio 2
+
+def ceros_en_posiciones_pares(s:list[int]):
+    """ 
+    problema CerosEnPosicionesPares (inout s:seq⟨Z⟩) {
+        requiere: { True }
+        modifica: {s}
+        asegura: { (|s| = |s@pre|) y (para todo i entero, con 0 <= i < |s|, 
+        si i es impar entonces s[i] = s@pre[i] y, 
+        si i es par, entonces s[i] = 0)}
+    }
+    """
+    for i in range(len(s)):
+        if i % 2 == 0:
+            s[i] = 0
+
+
+def ceros_en_posiciones_pares_2(s:list[int]) -> list[int]:
+    """ 
+    problema CerosEnPosicionesPares2 (in s:seq⟨Z⟩) : seq⟨Z⟩ {
+        requiere: { True }
+        asegura: { (|s| = |res|) y (para todo i entero, con 0 <= i < |res|, 
+        si i es impar entonces res[i] = s[i] y, 
+        si i es par, entonces res[i] = 0) }
+    }
+    """
+    res:list[int] = []
+    
+    for i in range(len(s)):
+        if i % 2 == 0:
+            res.append(0)
+        else:
+            res.append(s[i])
+    
+    return res
+
+
+def sin_vocales(texto:str) -> str:
+    """ 
+    Dada una cadena de caracteres devuelva una cadena igual a la anterior, pero sin las vocales. 
+    No se agregan espacios, sino que borra la vocal y concatena a continuacion.
+    """
+    vocales:list[str] = ['a', 'e', 'i', 'o', 'u']
+    res:str = ""
+    
+    for letra in texto:
+        if letra not in vocales:
+            res += letra
+    
+    return res
+
+
+
+
+
 
 
 
@@ -330,8 +413,34 @@ print(posicion_de_la_secuencia_mas_larga([4,3,8,82,12,41,53,64]))
 print(posicion_de_la_secuencia_mas_larga([4,8,12,12,12,4]))
 print(posicion_de_la_secuencia_mas_larga([]))
 
-
 print("\n14.")
+print(cantidad_digitos_impares([4,3,8,82,12,41,53,64]))
+print(cantidad_digitos_impares([57, 2383, 812, 246]))
+print(cantidad_digitos_impares([]))
+
 
 
 print("\nEjercicio 2:")
+
+print("\n1.")
+lista:list[int] = [1,3,5,6,7,89,6,4,3,2]
+print("Antes:", lista)
+ceros_en_posiciones_pares(lista)
+print("Después:", lista)
+
+print("\n2.")
+print(ceros_en_posiciones_pares_2([1,3,5,6,7,89,6,4,3,2]))
+
+print("\n3.")
+print(sin_vocales("frutilla"))
+print(sin_vocales("abecedario"))
+print(sin_vocales("elefante y cocodrilo"))
+print(sin_vocales(""))
+
+print("\n4.")
+
+
+print("\n5.")
+
+
+print("\n6.")
