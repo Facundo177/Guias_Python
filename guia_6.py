@@ -116,12 +116,12 @@ def trabaja_o_estudia_en_base_al_sexo_y_la_edad(sexo:str, edad:int):
     else:
         if (sexo == "M"):
             if (edad < 65):
-               print("Andá de vacaciones")
+                print("Andá de vacaciones")
             else:
                 print("Te toca trabajar") 
         elif (sexo == "F"):
             if (edad < 60):
-               print("Andá de vacaciones")
+                print("Andá de vacaciones")
             else:
                 print("Te toca trabajar") 
 
